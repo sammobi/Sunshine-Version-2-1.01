@@ -1,5 +1,6 @@
 package com.example.android.sunshine.app;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -36,7 +38,7 @@ import java.util.List;
 public class ForecastFragment extends Fragment {
 
 
-    ArrayAdapter<String> mForecastAdapter;
+    public ArrayAdapter<String> mForecastAdapter;
 
     public ForecastFragment() {
     }
@@ -83,10 +85,11 @@ public class ForecastFragment extends Fragment {
 // create list of type string and pass the array of type string as list
         List<String> weekForecast = new ArrayList<String>(Arrays.asList(data));
 // create arraydapter and pass all the paramters so send to the adapter
-        mForecastAdapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.list_item_forecast,
-                R.id.list_item_forecast_textview,
-                weekForecast);
+        mForecastAdapter = new ArrayAdapter<String>
+                (getActivity(),
+                        R.layout.list_item_forecast,
+                        R.id.list_item_forecast_textview,
+                        weekForecast);
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
@@ -94,6 +97,14 @@ public class ForecastFragment extends Fragment {
         ListView listView = (ListView) rootView.findViewById(R.id.listview_forecast);
 // set the adapter value in the listview
         listView.setAdapter(mForecastAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                String forecast = mForecastAdapter.getItem(position);
+                Intent intent = new Intent(getActivity(), DetailActivity.class).putExtra(Intent.EXTRA_TEXT, forecast);
+                startActivity(intent);
+            }
+        });
         return rootView;
         // These two need to be declared outside the try/catch
 // so that they can be closeduiii[ in the finally block.
@@ -309,5 +320,19 @@ public class ForecastFragment extends Fragment {
 
             return null;
         }
+
+        @Override
+        protected void onPostExecute(String[] result) {
+            if (result != null) {
+                mForecastAdapter.clear();
+                for (String dayForecastStr : result) {
+                    mForecastAdapter.add(dayForecastStr);
+                }
+                // new data from server
+            }
+
+        }
     }
+
+
 }
