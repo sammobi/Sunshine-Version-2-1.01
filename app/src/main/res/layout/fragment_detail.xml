@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.android.sunshine.app.DetailActivity">
 
+
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/detail_text"

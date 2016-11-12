@@ -7,6 +7,13 @@
     <string name="action_refresh" translatable="false">Refresh</string>
     <string name="title_activity_detail">Details</string>
     <string name="title_activity_settings">Settings</string>
+
+    <!-- Label for the location preference char limit 30 -->
+    <string name="pref_location_label">Location</string>
+    <!-- key name for storing location in the sharedprefernce char limit = none -->
+    <string name="pref_location_key" translatable="false">location</string>
+    <!-- default postal code for location preference char limit none -->
+    <string name="pref_location_default" translatable="false">20878</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
