@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="temp_unit_values_names">
+        <item>Celsius</item>
+        <!--item>#00FFFF</item-->
+
+        <item>Fahrenheit</item>
+        <!--item>#F0FFFF</item-->
+    </string-array>
+
+    <string-array name="temp_unit_values">
+        <item>Metric</item>
+        <!--item>#00FFFF</item-->
+
+        <item>Imperial</item>
+        <!--item>#F0FFFF</item-->
+    </string-array>
+
+</resources>
